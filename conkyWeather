@@ -1,0 +1,46 @@
+background no
+alignment top_left
+cpu_avg_samples 2
+net_avg_samples 4
+
+#Default color and border color
+#default_color
+
+default_graph_size 25 25
+double_buffer yes
+draw_borders no
+draw_graph_borders yes
+# ???
+draw_outline yes
+draw_shades no
+format_human_readable yes
+show_graph_range yes
+update_interval 1
+update_interval_on_battery 120
+use_xft yes
+xftfont DejaVu Sans Mono:size=12
+#xftfont UniCyr-sans:size=12
+#font xfontsel
+override_utf8_locale yes
+
+own_window yes
+own_window_type normal
+#own_window_transparent yes
+own_window_argb_value 0
+own_window_colour 25383C
+own_window_hints undecorate,sticky,below,skip_taskbar,skip_pager
+
+TEXT
+${color} Weather forecast
+${hr}
+# update every hour
+${color grey} ${execi 3600 java SaveWeather -fetch}
+${color grey} Location: ${execi 3600 java SaveWeather -location}
+# probably conky has max output length
+${color} ${execi 3600 java SaveWeather -forecast 0}
+${color} ${execi 3600 java SaveWeather -forecast 1}
+${color} ${execi 3600 java SaveWeather -forecast 2}
+${color} ${execi 3600 java SaveWeather -forecast 3}
+${color} ${execi 3600 java SaveWeather -forecast 4}
+${color} ${execi 3600 java SaveWeather -forecast 5}
+${color} ${execi 3600 java SaveWeather -forecast 6}
